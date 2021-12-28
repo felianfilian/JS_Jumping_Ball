@@ -6,21 +6,28 @@ window.onload = function () {
     var dir = 0;
     var ballX = 300;
     var ballY = 350;
+    var ballRadius = 50;
+    var canvasX = 600;
+    var CanvasY = 400;
 
-    getInput();
     startGame();
 
-    setInterval(debug01, 100);
-
     function startGame() {
-        setInterval(draw, 32);
-        //draw();
+        getInput();
+        draw();
+        setInterval(debug01, 100);
     }
 
     function draw() {
 
-        ctx.rect(100, 100, 100, 100);
-        ctx.stroke();
+        if (dir == 1 && ballX < canvasX - ballRadius) { ballX += 5; }
+        if (dir == 2 && ballX > ballRadius) { ballX -= 5; }
+        if (dir == 3 && ballY < CanvasY - ballRadius) { ballY += 5; }
+        if (dir == 4 && ballY > ballRadius) { ballY -= 5; }
+
+        ctx.clearRect(0, 0, 600, 400);
+
+
         /// title text
         ctx.beginPath();
         ctx.font = "30px Arial";
@@ -29,8 +36,12 @@ window.onload = function () {
 
         /// ball
         ctx.beginPath();
-        ctx.arc(ballX, ballY, 50, 0, 2 * Math.PI);
+        ctx.arc(ballX, ballY, ballRadius, 0, 2 * Math.PI);
+        ctx.fillStyle = "blue";
+        ctx.fill();
         ctx.stroke();
+
+        window.requestAnimationFrame(draw);
 
     }
 
@@ -60,8 +71,6 @@ window.onload = function () {
         btnDown.ontouchend = function () { dir = 0; }
         btnLeft.ontouchend = function () { dir = 0; }
         btnRight.ontouchend = function () { dir = 0; }
-
-        if (dir == 1) { ballX += 50; }
 
     }
 
