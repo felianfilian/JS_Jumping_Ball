@@ -7,6 +7,10 @@ window.onload = function () {
     var ballX = 300;
     var ballY = 350;
     var ballRadius = 50;
+
+    var coinX = 300;
+    var coinY = 200;
+
     var canvasX = 600;
     var CanvasY = 400;
 
@@ -33,6 +37,13 @@ window.onload = function () {
         ctx.font = "30px Arial";
         ctx.fillStyle = "#e0deff";
         ctx.fillText("Jumping Ball", 20, 50);
+
+        /// coin
+        ctx.beginPath();
+        ctx.arc(coinX, coinY, 20, 0, 2 * Math.PI);
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+        ctx.stroke();
 
         /// ball
         ctx.beginPath();
